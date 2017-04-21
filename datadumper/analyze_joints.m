@@ -21,7 +21,7 @@ function analyze_joints(datadumper_path)
 fullFileName=strcat(datadumper_path,'/head/data.log');
 if exist(fullFileName, 'file')
     [joints,Njoints] = load_joints_data (fullFileName);
-    plot_joints(joints, Njoints, 'left leg','head_joints.png')
+    plot_joints(joints, Njoints, 'heads','head_joints.png')
 else
     disp('not found head data')
 end
@@ -29,7 +29,7 @@ end
 fullFileName=strcat(datadumper_path,'/torso/data.log');
 if exist(fullFileName, 'file')
     [joints,Njoints] = load_joints_data (fullFileName);
-    plot_joints(joints, Njoints, 'right leg','torso_joints.png')
+    plot_joints(joints, Njoints, 'torso','torso_joints.png')
 else
     disp('not found torso data')
 end
@@ -38,7 +38,7 @@ end
 fullFileName=strcat(datadumper_path,'/leftArm/data.log');
 if exist(fullFileName, 'file')
     [joints,Njoints] = load_joints_data (fullFileName);
-    plot_joints(joints, Njoints, 'left leg','left_arm_joints.png')
+    plot_joints(joints, Njoints, 'left arm','left_arm_joints.png')
 else
     disp('not found left arm data')
 end
@@ -46,7 +46,7 @@ end
 fullFileName=strcat(datadumper_path,'/rightArm/data.log');
 if exist(fullFileName, 'file')
     [joints,Njoints] = load_joints_data (fullFileName);
-    plot_joints(joints, Njoints, 'right leg','right_arm_joints.png')
+    plot_joints(joints, Njoints, 'right arm','right_arm_joints.png')
 else
     disp('not found right arm data')
 end

@@ -23,6 +23,9 @@ plot_FTS(FTS_LA, 'left arm FTS','left_arm_FTS.png')
 plot_FTS(FTS_RA, 'right arm FTS','right_arm_FTS.png')
 plot_FTS(FTS_LL, 'left leg FTS','left_leg_FTS.png')
 plot_FTS(FTS_RL, 'right leg FTS','right_leg_FTS.png')
+plot_FTS(FTS_LF, 'left foot FTS','left_foot_FTS.png')
+plot_FTS(FTS_RF, 'right foot FTS','right_foot_FTS.png')
+
 
 end
 
