@@ -54,7 +54,8 @@ function plot_FTS(FTS, name, filename)
     plot(fz,'b');
     ylabel('force [N]');
     title(name);
-    xlabel(strcat('mean = ',num2str(mean(fx)),'; ', num2str(mean(fy)),'; ', num2str(mean(fz))))
+    xlabel(strcat('mean = ',num2str(mean(fx)),'; ', num2str(mean(fy)),'; ', num2str(mean(fz)), ...
+                  'std = ',num2str(std(fx)),'; ', num2str(std(fy)),'; ', num2str(std(fz)) ))
     legend('fx','fy','fz');
 
     subplot(2,1,2);
@@ -62,7 +63,8 @@ function plot_FTS(FTS, name, filename)
     plot(my,'g');
     plot(mz,'b');
     ylabel('moment [Nm]');
-    xlabel(strcat('mean = ',num2str(mean(mx)),'; ', num2str(mean(my)),'; ', num2str(mean(mz))))
+    xlabel(strcat('mean = ',num2str(mean(mx)),'; ', num2str(mean(my)),'; ', num2str(mean(mz)), ...
+                  'std = ',num2str(std(mx)),'; ', num2str(std(my)),'; ', num2str(std(mz)) ))
     legend('mx','my','mz');
     
     saveas(gcf,filename,'png');
