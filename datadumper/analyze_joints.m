@@ -38,7 +38,7 @@ end
 fullFileName=strcat(datadumper_path,'/leftArm/data.log');
 if exist(fullFileName, 'file')
     [joints,Njoints] = load_joints_data (fullFileName);
-    plot_joints(joints, Njoints, 'left arm','left_arm_joints.png')
+    plot_joints_arm(joints, Njoints, 'left arm', 'left hand','left_arm_joints.png','left_hand_joints.png')
 else
     disp('not found left arm data')
 end
@@ -46,7 +46,7 @@ end
 fullFileName=strcat(datadumper_path,'/rightArm/data.log');
 if exist(fullFileName, 'file')
     [joints,Njoints] = load_joints_data (fullFileName);
-    plot_joints(joints, Njoints, 'right arm','right_arm_joints.png')
+    plot_joints_arm(joints, Njoints, 'right arm', 'right hand', 'right_arm_joints.png','right_hand_joints.png')
 else
     disp('not found right arm data')
 end
@@ -99,5 +99,42 @@ function plot_joints(joints, Njoints, name, filename)
     end
     
     saveas(gcf,filename,'png');
+
+end
+
+function plot_joints_arm(joints, Njoints, nameArm, nameHand, filenameArm, filenameHand)
+   
+    %iter_data = joints(:,1);  %not used
+    %time = joints(:,2);       %not used
+    for i=1:Njoints
+        j{i}=joints(:,i+2);
+    end
+   
+    figure;
+    for i=1:7
+        subplot(7,1,i);
+        plot(j{i},'r'); 
+        ylabel(strcat('j',num2str(i-1),' [deg]'));
+        if i==1
+            title(nameArm);
+        end
+        xlabel(strcat('mean = ',num2str(mean(j{i})),'std = ',num2str(std(j{i}))))
+    end
+    
+    saveas(gcf,filenameArm,'png');
+    
+    figure;
+    for i=8:Njoints
+        subplot(Njoints-7,1,i-7);
+        plot(j{i},'r'); 
+        ylabel(strcat('j',num2str(i-1),' [deg]'));
+        if i==8
+            title(nameHand);
+        end
+        xlabel(strcat('mean = ',num2str(mean(j{i})),'std = ',num2str(std(j{i}))))
+    end
+    
+    saveas(gcf,filenameHand,'png');
+
 
 end
