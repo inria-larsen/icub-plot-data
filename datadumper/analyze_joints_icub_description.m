@@ -20,6 +20,7 @@ function analyze_joints_icub_description(datadumper_path)
 
 plot_each_limb=false;
 plot_each_sensor=true;
+plot_episodes=true;
 
 fullFileName=strcat(datadumper_path,'/head/data.log');
 if exist(fullFileName, 'file')
@@ -112,6 +113,16 @@ else
     disp('not found left foot analog data');
 end
 
+fullFileName=strcat(datadumper_path,'/episodes/data.log');
+if exist(fullFileName, 'file')
+    [episodes,dimEpisodes] = load_joints_data (fullFileName);
+    if(plot_episodes==true) 
+        plot_episodes_time(episodes, 'episodes','episodes.png');
+    end
+else
+    disp('not found episodes data');
+end
+
 
 plot_joints_compare_joints(jointsLL, jointsRL, NjointsLL, 'Legs joints', 'compare_legs_joints.png');
 plot_joints_compare_FTsensor(jointsLF_FTS, jointsRF_FTS, NjointsLF_FTS, 'Feet FTS', 'compare_foot_FTS.png');
@@ -176,6 +187,20 @@ function [joints,Njoints] = load_joints_data (fullFileName)
     joints = load(fullFileName);
     [nsamples,dim]=size(joints);
     Njoints=dim-2;
+end
+
+function plot_episodes_time(episodes, name, filename)
+   
+    %iter_data = episodes(:,1);  %not used
+    %time = episodes(:,2);       %not used
+   
+    figure;
+    plot(episodes(:,3),'r');
+    ylabel('id');
+    title(name);
+    xlabel('time')  
+    saveas(gcf,filename,'png');
+
 end
 
 function plot_joints(joints, Njoints, name, filename)
