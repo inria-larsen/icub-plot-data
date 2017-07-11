@@ -2,7 +2,7 @@
 % 
 % Analyze the data of joints of iCub, dumped by datadumper. 
 % Data should be recorded as data.log in the folders created automatically
-% by the dataDumper, named as leftArm, rightLeg, etc. This
+% by the yarpdatadumper, named as leftArm, rightLeg, etc. This
 % function needs the path where you saved the dataDumper data.
 % It automatically generates the plots and saves them as PNG.
 %
@@ -65,6 +65,14 @@ if exist(fullFileName, 'file')
     plot_joints(joints, Njoints, 'right leg','right_leg_joints.png')
 else
     disp('not found right leg data')
+end
+
+fullFileName=strcat(datadumper_path,'/waist/data.log');
+if exist(fullFileName, 'file')
+    [joints,Njoints] = load_joints_data (fullFileName);
+    plot_joints(joints, Njoints, 'waist','waist.png')
+else
+    disp('not found waist data')
 end
 
 
